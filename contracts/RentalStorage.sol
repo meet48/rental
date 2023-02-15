@@ -32,7 +32,7 @@ contract RentalStorage {
     address public feeCollector;
 
     // Rate, 100% equal 10000.
-    uint256 public fee;
+    uint256 public fee = 300;
 
     // The struct of rental information.
     struct Rental {
