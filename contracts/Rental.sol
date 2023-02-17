@@ -15,6 +15,7 @@ contract Rental is Ownable , AccessControl , EIP712 , RentalStorage {
     constructor() EIP712("rental", "1"){
         _grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _grantRole(CLAIM_ROLE, _msgSender());
+        feeCollector = msg.sender;
     }
     
 
