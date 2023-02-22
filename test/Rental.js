@@ -8,8 +8,8 @@ describe("Rental", function () {
     const Rental = await hre.ethers.getContractFactory("Rental");
     const rental = await Rental.deploy();
     await rental.deployed();
-
-    return { rental };
+    const [owner] = await ethers.getSigners();
+    return { rental , owner};
   }
 
 
@@ -26,5 +26,18 @@ describe("Rental", function () {
     expect(await rental.fee()).to.equal(fee);
 
   });
+
+
+  it("Set feeColllector", async function () {
+    const { rental , owner} = await deployRental();
+    let ownerAddress;
+    await owner.getAddress().then((ret) => {
+      ownerAddress = ret;
+    });
+
+    await rental.setFeeCollector(ownerAddress);
+    expect(await rental.feeCollector()).to.equal(ownerAddress);
+  });
+
 
 });
