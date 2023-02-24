@@ -40,4 +40,20 @@ describe("Rental", function () {
   });
 
 
+  it("grantRole", async function () {
+    const { rental , owner} = await deployRental();
+    let ownerAddress;
+    await owner.getAddress().then((ret) => {
+      ownerAddress = ret;
+    });
+
+    let role = '0xf7db13299c8a9e501861f04c20f69a2444829a36a363cfad4b58864709c75560';
+    await rental.grantRole(role, ownerAddress);
+    expect(await rental.hasRole(role, ownerAddress)).to.equal(true);
+  });
+
+
+
+
+
 });
