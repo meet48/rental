@@ -53,7 +53,13 @@ describe("Rental", function () {
   });
 
 
+  it("supportsInterface", async function () {
+    const { rental , owner} = await deployRental();
+    expect(await rental.supportsInterface('0x7965db0b')).to.equal(true);
+  });
 
 
 
+
+  
 });
