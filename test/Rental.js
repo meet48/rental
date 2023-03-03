@@ -59,6 +59,12 @@ describe("Rental", function () {
   });
 
 
+  it("setToken", async function () {
+    const { rental , owner} = await deployRental();
+    let token = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2';
+    await rental.setToken(token);
+    expect(await rental.token().then((ret) => {return ret.toLowerCase()})).to.equal(token);
+  });
 
 
   
