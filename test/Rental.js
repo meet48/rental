@@ -67,5 +67,13 @@ describe("Rental", function () {
   });
 
 
+  it("owner", async function () {
+    const { rental , owner} = await deployRental();
+    expect(await rental.owner().then((ret) => {return ret.toLowerCase()})).to.equal(owner.address.toLowerCase());
+  });
+
+
+
+
   
 });
